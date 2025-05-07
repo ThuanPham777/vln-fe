@@ -1,22 +1,43 @@
-// components/Header.js
-import SearchBar from "./SearchBar";
-import Navbar from "./Navbar";
+import SearchBar from './SearchBar';
+import Navbar from './Navbar';
+import { FaFacebookF, FaPhone, FaTelegramPlane } from 'react-icons/fa';
+import { ESettingKey } from '@/api/setting/dto/get-setting.in.dto';
+import { ISettingsResponse } from '@/api/api.type';
 
-export default function Header() {
+interface HeaderProps {
+  settings: ISettingsResponse;
+}
+
+export default function Header({ settings }: HeaderProps) {
+  const logo =
+    settings[ESettingKey.LOGO]?.image ??
+    'https://flowbite.com/docs/images/logo.svg';
+  const contact = settings[ESettingKey.CONTACT] ?? {
+    phone: '',
+    facebook: '',
+    telegram: '',
+    gmail: '',
+  };
+
+  const { phone, facebook, telegram, gmail } = contact;
+
   return (
     <header>
       {/* Top Navigation */}
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 space-x-6">
+      <nav className='bg-white border-gray-200 dark:bg-gray-900'>
+        <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 space-x-6'>
           {/* Logo */}
-          <a href="https://flowbite.com" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a
+            href='/'
+            className='flex items-center space-x-3 rtl:space-x-reverse'
+          >
             <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8"
-              alt="Flowbite Logo"
+              src={logo}
+              className='h-8'
+              alt='Việc Làm Ngon'
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+            <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
+              Việc Làm Ngon
             </span>
           </a>
 
@@ -24,28 +45,28 @@ export default function Header() {
           <SearchBar />
 
           {/* Social Icons */}
-          <div className="flex items-center space-x-6 rtl:space-x-reverse text-gray-500 dark:text-white">
+          <div className='flex items-center space-x-6 rtl:space-x-reverse text-gray-500 dark:text-white'>
             <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full"
+              href={facebook}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'
             >
-              <i className="fab fa-facebook-f text-xl"></i>
+              <FaFacebookF className='text-xl' />
             </a>
             <a
-              href="tel:5541251234"
-              className="hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full"
+              href={`tel:${phone}`}
+              className='hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'
             >
-              <i className="fas fa-phone text-xl"></i>
+              <FaPhone className='text-xl' />
             </a>
             <a
-              href="https://telegram.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full"
+              href={telegram}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hover:text-blue-600 bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'
             >
-              <i className="fab fa-telegram-plane text-xl"></i>
+              <FaTelegramPlane className='text-xl' />
             </a>
           </div>
         </div>

@@ -30,7 +30,21 @@ yarn-error.log*
 
 # vercel
 .vercel
+package-lock.json
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+dist
+out
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.
+package-lock.json
+Dockerfile
+docker-compose.yml
